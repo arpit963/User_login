@@ -1,9 +1,53 @@
 {% comment %} {% extends 'base.html' %} {% endcomment %}
 
-{% block title %}Contact{% endblock title %}
+{% comment %} {% block title %}Contact{% endblock title %}
 
 {% block body %}
-
+Welcome {{request.user}}
 This is contact
+<button type="button"><a href="logout">Logout</a></button>
 
-{% endblock body %}
+{% endblock body %} {% endcomment %}
+{% comment %} {% extends 'base.html' %}
+
+{% block title %}home{% endblock title %}
+
+{% block body %} {% endcomment %}
+{% comment %} Header Slide {% endcomment %}
+{% comment %} Welcome {{request.user}}
+This is index
+
+<a href="logout">Logout</a>
+
+{% endblock body %}  {% endcomment %}
+
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"/>
+    <title>Home</title>
+</head>
+<body>
+    Welcome {{request.user}}
+    <h1>This is a Contact page</h1>
+    <button type="button"><a href="logout">Logout</a></button><br>
+ 
+    {% if perms.blog.delete_page %}
+
+        <input type="button" value="Add"> 
+        <input type="button" value="Change"> 
+        <input type="button" value="Delete"> 
+        <input type="button" value="View"> 
+    
+    {% else %}
+        <h3>no delete button</h3>
+
+    {% endif %}
+
+</body>
+</html>

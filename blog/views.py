@@ -1,6 +1,7 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import Permission
 
 # Create your views here.
 def index(request):
@@ -8,7 +9,7 @@ def index(request):
 
 def contact(request):
     return render(request, 'contact.html')
-
+    
 # User Authenticate
 def loginUser(request):
     if request.method == 'POST':
@@ -18,14 +19,18 @@ def loginUser(request):
         # check if user has entered correct credentials
 
         user = authenticate(username=username, password=password)
-        if user is not None:
+        # if user is not None:
+        #     login(request, user)
+        #     return redirect('/')
+        # else:
+        #     return render(request, 'login.html')
+
+        if username=='arpit':
             login(request, user)
             return redirect('/')
-            # A backend authenticated the credentials
         else:
-            # No backend authenticated the credentials
-            return render(request, 'login.html')
-    
+            login(request, user)
+            return redirect('/contact')
     return render(request, 'login.html')
 
 def logoutUser(request):
