@@ -21,6 +21,9 @@ def contact(request):
         messages.success(request, 'Your message has been sent')
 
     return render(request, 'contact.html')
+
+def about(request):
+    return render(request, 'about.html')
     
 # User Authenticate
 def loginUser(request):

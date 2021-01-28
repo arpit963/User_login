@@ -17,7 +17,7 @@ Welcome {{request.user}}
                     <label for="email" class="form-label">Email address</label>
                     <input type="email" class="form-control" id="email" name="email" placeholder="Enter your Email"
                         aria-describedby="emailHelp">
-                    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                    {% comment %} <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> {% endcomment %}
                 </div>
                 <div class="mb-3">
                     <label for="Phone" class="form-label">Phone Number</label>
@@ -40,6 +40,9 @@ Welcome {{request.user}}
                     <label class="form-check-label" for="exampleCheck1">Check me out</label>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
+                {% if perms.blog.view_contact %}
+                <input type="button" value="view">
+                {% endif %}
             </form>
         </div>
     </div>
