@@ -1,53 +1,48 @@
-{% comment %} {% extends 'base.html' %} {% endcomment %}
-
-{% comment %} {% block title %}Contact{% endblock title %}
-
+{% extends 'base.html' %}
+{% block title %}Contact{% endblock title %}
 {% block body %}
 Welcome {{request.user}}
-This is contact
-<button type="button"><a href="logout">Logout</a></button>
+<div class="container-fluid px-0">
+    <img src="/static/img/tile2.jpg" class="d-block w-100" alt="...">
+    <div class="container">
+        <div class="carousel-caption d-md-block mb-0 pb-0" style="top:75px;">
+            <h1 class="text-center">Contact Us</h1>
+            <form method="post" action="/contact" class="flex">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Enter your Name">
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter your Email"
+                        aria-describedby="emailHelp">
+                    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                </div>
+                <div class="mb-3">
+                    <label for="Phone" class="form-label">Phone Number</label>
+                    <input type="Phone" class="form-control" id="Phone" name="phone"
+                        placeholder="Enter your Mobile Number">
+                </div>
+                {% comment %} address {% endcomment %}
+                <div class="mb-3">
+                    <label for="adr" class="form-label">Address</label>
+                    <input type="text" class="form-control" id="adr" name="adr" placeholder="Enter your Address">
+                </div>
+                {% comment %} address {% endcomment %}
+                <div class="mb-3">
+                    <label for="desc" class="form-label">Tell me about what you want to contact me for ...</label>
+                    {% comment %} <input type="password" class="form-control" id="exampleInputPassword1"> {% endcomment%}
+                    <textarea class="form-control" id="desc" rows="3" name="desc"></textarea>
+                </div>
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
 
-{% endblock body %} {% endcomment %}
-{% comment %} {% extends 'base.html' %}
-
-{% block title %}home{% endblock title %}
-
-{% block body %} {% endcomment %}
-{% comment %} Header Slide {% endcomment %}
-{% comment %} Welcome {{request.user}}
-This is index
-
-<a href="logout">Logout</a>
-
-{% endblock body %}  {% endcomment %}
-
-
-{% load static %}
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"/>
-    <title>Home</title>
-</head>
-<body>
-    Welcome {{request.user}}
-    <h1>This is a Contact page</h1>
-    <button type="button"><a href="logout">Logout</a></button><br>
- 
-    {% if perms.blog.delete_page %}
-
-        <input type="button" value="Add"> 
-        <input type="button" value="Change"> 
-        <input type="button" value="Delete"> 
-        <input type="button" value="View"> 
-    
-    {% else %}
-        <h3>no delete button</h3>
-
-    {% endif %}
-
-</body>
-</html>
+{% endblock body %}
